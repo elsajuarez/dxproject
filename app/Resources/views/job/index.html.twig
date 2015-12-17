@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Job list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Namejob</th>
+                <th>Adres</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for job in jobs %}
+            <tr>
+                <td><a href="{{ path('job_show', { 'id': job.id }) }}">{{ job.id }}</a></td>
+                <td>{{ job.namejob }}</td>
+                <td>{{ job.adres }}</td>
+                <td>
+                    <ul class="list-inline">
+                        <li>
+                            <a class="btn btn-default btn-sm" href="{{ path('job_show', { 'id': job.id }) }}" role="button">show</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-default btn-sm" href="{{ path('job_edit', { 'id': job.id }) }}" role="button">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul class="list-inline">
+        <li>
+             <a  class="btn btn-default" href="{{ path('job_new') }}" role="button">Create a new entry</a>
+        </li>
+    </ul>    
+{% endblock %}
